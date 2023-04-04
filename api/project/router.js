@@ -12,14 +12,24 @@
 */
 
 const express = require("express");
+const projectModel = require("./model");
 const router = express.Router();
 
 router.get("/", async (req, res, next) => {
   try {
-    res.json({ message: "selamlar project" });
+    const projects = await projectModel.getProjects();
+    res.json(projects);
   } catch (err) {
     next(err);
   }
 });
 
+router.post("/", async (req, res, next) => {
+  try {
+    const project = await projectModel.addProject(req.body);
+    res.json(project);
+  } catch (err) {
+    next(err);
+  }
+});
 module.exports = router;

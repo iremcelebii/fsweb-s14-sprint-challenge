@@ -1,6 +1,6 @@
 const db = require("../../data/dbConfig");
 
-async function getResource() {
+async function getResources() {
   return await db("resources");
 }
 
@@ -15,7 +15,7 @@ async function addResource(resourceobj) {
   return await response[0];
 }
 
-module.exports = { addResource, getResource };
+module.exports = { addResource, getResources };
 
 //! NOTLAR:
 /*
