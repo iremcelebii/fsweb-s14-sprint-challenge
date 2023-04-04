@@ -1,9 +1,11 @@
 const express = require("express");
+const resourceModel = require("./model");
 const router = express.Router();
 
 router.get("/", async (req, res, next) => {
   try {
-    res.json({ message: "selamlar resource" });
+    const resources = await resourceModel.getResource();
+    res.json(resources);
   } catch (err) {
     next(err);
   }
@@ -11,7 +13,8 @@ router.get("/", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
   try {
-    res.json({ message: "selamlar resource" });
+    const resource = await resourceModel.addResource(req.body);
+    res.json(resource);
   } catch (err) {
     next(err);
   }
